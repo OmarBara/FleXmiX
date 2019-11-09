@@ -9,7 +9,7 @@ var moviesList = [
 	imdbRating:"5.7/10",
 	Genre:'Action, Sci-Fi',
 	src:'https://cdn.vox-cdn.com/thumbor/Md4vxxazIX3_4SAMluJvjEKCers=/0x0:655x365/920x613/filters:focal(249x23:353x127):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/55356661/spider_man_homecoming.0.jpg',
-	link:'https://www.youtube.com/embed/KwWT8HCB4f4'
+	link:'https://www.youtube.com/embed/SCyg3hWNYVM'
 },
 {
 	Title:"The Matrix",
@@ -107,16 +107,51 @@ var seriesList =[
 	src:'http://www.gstatic.com/tv/thumb/tvbanners/16695117/p16695117_b_v8_ae.jpg',
 	link:'https://www.youtube.com/embed/s9APLXM9Ei8'
 }]
-//music list future work
-var musicList =[{},{}]
 
+//music list future work
+var musicList =[
+{
+	Title:"Billie Eilish bury a friend",
+	Year: "2019",
+	Rated:'',
+	Language:'Eng',
+	imdbRating:"9",
+	Genre:'Music , Pop',
+	src:'https://consequenceofsound.net/wp-content/uploads/2019/01/billie-eilish-debut-album-title-when-we-fall-asleep.png?w=807',
+	link:'https://www.youtube.com/embed/HUHC9tYz8ik'
+},
+{
+	Title:"Ariana Grande 7 rings",
+	Year: "2019",
+	Rated:'',
+	Language:'Eng',
+	imdbRating:"9",
+	Genre:'Music , Pop',
+	src:'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQINtL9QoRZOT-ffvIUHEDpPY17XEwqyQTPFi-KzE4J0QGV3OBb',
+	link:'https://www.youtube.com/embed/QYh6mYIJG2Y'
+}]
+
+
+function allMedia() {
+	var all =[]
+	for (var i = 0; i < moviesList.length; i++) {
+		all.push(moviesList[i])
+	}
+	for (var i = 0; i < seriesList.length; i++) {
+		all.push(seriesList[i])
+	}
+	for (var i = 0; i < musicList.length; i++) {
+		all.push(musicList[i])
+	}
+	return all;
+}
 //display all movies in movie list
 function displayMovies(list) {
 		for (var i = 0; i < list.length; i++) {
-		var column = $('<div class="column" id=""></div>').attr('id',list[i] )
+		var column = $('<div class="column" id=""></div>').attr('id',i)
 		var card = $('<div class="card" id="'+ i +'">')
-		$('#row').append(column.append(card.append($('<a onclick="display('+list[i]+')" href=""></a>')
-			.append($('<img>').attr('src', list[i].src)) // maybe add play link or onclick function to call play
+		$('#row').append(column.append(card.append($('<a href="" class="anc" id='+i+'></a>')
+			.append($('<img>').attr('src', list[i].src)) // maybe add play link or onclick function to call play  onclick="display('+list[i]+')"
 			.append($('<h4></h4>').text(list[i].Title)))// +''+ list[i].Year))
 			.append('<h5>'+list[i].Year+'</h5>')))
 		
@@ -134,9 +169,11 @@ function emptyAside(){
 	$('#sidePlay').html('')
 }
 
-
-displayMovies(moviesList)
-
+displayMovies(allMedia())
+/*displayMovies(moviesList)
+displayMovies(seriesList)
+displayMovies(musicList)
+*/
 
 
 //when selecting a video view more ditails
@@ -160,29 +197,41 @@ function play(id) {
 	emptyAside()
 	var frame = 
 	`
-	<iframe width="960" height="615" src="${moviesList[id].link}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-	`
+	<iframe width="960" height="615" src="${moviesList[id].link}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>	`
 	$('#main').append(frame)
 	// $('#main').append('<video width="800" height="640" controls><source src="'+moviesList[id].link+'" type="video/mp4"><source src="movie.ogg" type="video/ogg" autoplay poster="'+ moviesList[id].src +'"></video>')
 
 }
 
 
-
+//serch forn name and display it
 $('#search').on('click', function() { 
 var x =$('#sear').val()
 var result = []
 for (var i = 0; i < moviesList.length; i++) {
 	 if(moviesList[i].Title == x)
-	result.push(moviesList[i])
-	//if( moviesList[i].name )
+	result.push(moviesList[i])	
 }
 displayMovies(result)
 })
 
-
+//on clik display movie categoreis
+$('#Movie').on('click', function() {
+	empty()
+	emptyAside()
+	displayMovies(moviesList)
+})
+//on clik display Series categoreis
 $('#Series').on('click', function() {
 	empty()
 	emptyAside()
 	displayMovies(seriesList)
+})
+
+//on clik display Music categoreis
+$('#Music').on('click', function() {
+	empty()
+	
+	displayMovies(musicList)
+
 })
