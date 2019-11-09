@@ -9,10 +9,38 @@
 	<link rel="stylesheet" type="text/css" href="system/style.css">
 </head>
 <body>
-	<div id="main"></div>
+  <div class="topnav">
+  <a class="active" href="#home">Home</a>
+  <div class="search-container">
+    <form >
+      <input type="text" placeholder="Search.." name="search">
+      <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+  </div>
+</div>
+
+
+   <div class="sidenav">
+  <a href="index.html">FleXmiX</a>
+  <a href="#">Movie</a>
+  <a href="#">Series</a>
+  <a href="#">Vide Clips</a>
+</div> 
+	<div id="main">
+  <div id="picAside"></div>
+  <div id="sidePlay"></div>
+  <div id="row"></div> 
+
+  </div>
+
+
+<script type="text/javascript" src="system/main.js"></script>
+</body>
+</html>
+
 
 <!-- <div>
-	<div>clip 1 - 30:12 rateIMD , </div>
+  <div>clip 1 - 30:12 rateIMD , </div>
 <video width="420" height="340" controls>
   <source src="system/videoplayback.mp4" type="video/mp4">
   <source src="movie.ogg" type="video/ogg">
@@ -24,14 +52,11 @@
   <source src="system/Berthold.mp4" type="video/mp4">
   <source src="movie.ogg" type="video/ogg">
 
-  	<p>the file list for the movies and music</p>
+    <p>the file list for the movies and music</p>
   <input type="file" name="file" id="file">
 
 </video>
  -->
-<script type="text/javascript" src="system/main.js"></script>
-</body>
-</html>
 
 <!-- //1-create the libray and display one movie 
 //2-display multi movies
