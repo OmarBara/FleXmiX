@@ -1,2 +1,2 @@
-omarFlex
-Local media player for your movies and series. 
+# MyFlex
+Local media player for your movies and series store and play.
